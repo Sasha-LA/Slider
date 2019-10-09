@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Change pictures</title>
+
+	<style type="text/css">
+		.main {
+			border: 1px solid grey;
+			width: 650px;
+			height: 230px;
+			margin: 0 auto;
+			padding: 0;
+			overflow: hidden;
+			position: relative;
+		}
+		.picture {
+			margin: 5px;
+			padding: 10px;
+			position: absolute;
+			left: 0;
+		}
+
+	
+
+
+
+		</style>
+</head>
+<body>
+
+		<div id="main" class="main">
+			<img id="pic1" class="picture"  width="300" height="200" >
+			<img id="pic2" class="picture"  width="300" height="200">
+			<img id="pic3" class="picture"  width="300" height="200">
+		</div>
+
+
+
+
+
+
+<script type="text/javascript">
+	
+	
+
+	let e = document.getElementsByClassName("picture");
+	e[1].style.left = "320px";
+	e[2].style.left = "640px";
+	/*let arr = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8]; Придумать что б они шли все по порядку 
+	let l = 0;
+	let l1 = [0,1,2];*/
+	
+	
+	let n;
+	let c = [1,1,1];
+	let t = setInterval(move, 40);
+	let frame = "small/small-Around-The-World-national-geographic-00"; 
+	for (let i = 1; i <=3; i++){
+		e[i-1].src = frame + i + ".jpg";
+	}
+	function move(){
+			
+		for (let i = 0; i < e.length; i++){
+			 n = +parseInt(window.getComputedStyle(e[i],null).getPropertyValue("left"));			
+			e[i].style.left = n - 5 + "px";
+
+			if (n <= -320){
+				
+				e[i].style.left  = "635px";				
+
+				if (c[i] == 1){
+					
+					e[i].src = frame + (i+4) + ".jpg";
+					c[i] = 2;					
+				}
+				else if (c[i] == 2){
+					let u = i + 7;
+					if (u > 8){
+						e[i].src = frame + (i+1) + ".jpg";
+						c[i] = 1;
+						return false;
+					}
+					e[i].src = frame + (i+7) + ".jpg";
+					c[i] = 3;				
+				}
+				else if (c[i] == 3){
+					e[i].src = frame + (i+1) + ".jpg";
+					c[i] = 1;					
+				} 
+			}
+		}		
+	}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>>	
+
+
